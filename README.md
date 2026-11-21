@@ -1,5 +1,7 @@
 # Data Structure Visualizer
 
+**Live Demo:** https://nujhatshaikh.github.io/data-structure-visualizer/
+
 Interactive web app jo data structures ko step-by-step animation ke saath samjhata hai.
 Pure HTML, CSS aur JavaScript, koi framework ya installation nahi chahiye.
 
