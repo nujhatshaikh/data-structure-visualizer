@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Structure Visualizer</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <h1>Data Structure Visualizer</h1>
+  <p>Understanding Data Structures through Visualization &middot; Department of Computer Science</p>
+</header>
+
+<div class="wrap">
+  <div class="tabs" id="tabs">
+    <button class="tab on" data-tab="array">Array</button>
+    <button class="tab" data-tab="stack">Stack</button>
+    <button class="tab" data-tab="queue">Queue</button>
+    <button class="tab" data-tab="list">Linked List</button>
+    <button class="tab" data-tab="tree">Tree (BST)</button>
+    <button class="tab" data-tab="graph">Graph</button>
+  </div>
+
+  <div class="speed">Speed <input type="range" id="speed" min="1" max="6" value="3"> <span id="speedv">Normal</span></div>
+
+  <!-- ARRAY -->
+  <section class="panel on" id="p-array">
+    <h2>Array Visualization</h2>
+    <p class="desc">Array elements contiguous memory me store hote hain. Index se direct access <b>O(1)</b> hai, insert/delete me shifting ki wajah se <b>O(n)</b>.</p>
+    <div class="controls">
+      <input id="a-val" type="number" placeholder="Value">
+      <input id="a-idx" type="number" placeholder="Index">
+      <button class="b" id="a-ins">Insert</button>
+      <button class="b red" id="a-del">Delete at Index</button>
+      <button class="b" id="a-sea">Search Value</button>
+      <button class="b" id="a-acc">Access Index</button>
+      <button class="b green" id="a-tra">Traverse</button>
+      <button class="b" id="a-rnd">Random</button>
+      <button class="b" id="a-clr">Clear</button>
+    </div>
+    <div class="stage"><div class="row" id="a-view"></div></div>
+    <div class="log" id="log-a"></div>
+  </section>
+
+  <!-- STACK -->
+  <section class="panel" id="p-stack">
+    <h2>Stack Visualization</h2>
+    <p class="desc">Stack <b>LIFO</b> (Last In, First Out) follow karta hai. Push aur pop sirf <b>TOP</b> pe hote hain, top pointer move hota dikhega.</p>
+    <div class="controls">
+      <input id="s-val" type="number" placeholder="Value">
+      <button class="b" id="s-push">Push</button>
+      <button class="b red" id="s-pop">Pop</button>
+      <button class="b green" id="s-peek">Peek</button>
+      <button class="b" id="s-clr">Clear</button>
+    </div>
+    <div class="stage center"><div class="vstack" id="s-view"></div></div>
+    <div class="out" id="s-out"></div>
+    <div class="log" id="log-s"></div>
+  </section>
+
+  <!-- QUEUE -->
+  <section class="panel" id="p-queue">
+    <h2>Queue Visualization</h2>
+    <p class="desc">Queue <b>FIFO</b> (First In, First Out) follow karta hai. Enqueue <b>REAR</b> pe, dequeue <b>FRONT</b> se hota hai.</p>
+    <div class="controls">
+      <input id="q-val" type="number" placeholder="Value">
+      <button class="b" id="q-enq">Enqueue</button>
+      <button class="b red" id="q-deq">Dequeue</button>
+      <button class="b green" id="q-peek">Peek Front</button>
+      <button class="b" id="q-clr">Clear</button>
+    </div>
+    <div class="stage"><div class="row" id="q-view" style="padding-top:26px"></div></div>
+    <div class="out" id="q-out"></div>
+    <div class="log" id="log-q"></div>
+  </section>
+
+  <!-- LINKED LIST -->
+  <section class="panel" id="p-list">
+    <h2>Linked List Visualization</h2>
+    <p class="desc">Har node me <b>data</b> aur <b>next</b> ka address hota hai. Memory dynamic use hoti hai, traversal HEAD se start hota hai.</p>
+    <div class="controls">
+      <input id="l-val" type="number" placeholder="Value">
+      <input id="l-pos" type="number" placeholder="Position">
+      <button class="b" id="l-head">Insert Head</button>
+      <button class="b" id="l-tail">Insert Tail</button>
+      <button class="b" id="l-at">Insert at Pos</button>
+      <button class="b red" id="l-del">Delete Value</button>
+      <button class="b" id="l-sea">Search</button>
+      <button class="b green" id="l-tra">Traverse</button>
+      <button class="b" id="l-clr">Clear</button>
+    </div>
+    <div class="stage"><div class="row" id="l-view" style="align-items:center"></div></div>
+    <div class="log" id="log-l"></div>
+  </section>
+
+  <!-- TREE -->
+  <section class="panel" id="p-tree">
+    <h2>Tree Visualization (Binary Search Tree)</h2>
+    <p class="desc">Hierarchical data parent-child relation ke saath. BST me left child chhota aur right child bada hota hai. Inorder, Preorder aur Postorder traversal animate hote hain.</p>
+    <div class="controls">
+      <input id="t-val" type="number" placeholder="Value">
+      <button class="b" id="t-ins">Insert</button>
+      <button class="b red" id="t-del">Delete</button>
+      <button class="b" id="t-sea">Search</button>
+      <button class="b green" id="t-in">Inorder</button>
+      <button class="b green" id="t-pre">Preorder</button>
+      <button class="b green" id="t-post">Postorder</button>
+      <button class="b" id="t-rnd">Random Tree</button>
+      <button class="b" id="t-clr">Clear</button>
+    </div>
+    <div class="stage center"><svg id="t-svg" viewBox="0 0 400 120"></svg></div>
+    <div class="out" id="t-out"></div>
+    <div class="log" id="log-t"></div>
+  </section>
+
+  <!-- GRAPH -->
+  <section class="panel" id="p-graph">
+    <h2>Graph Visualization</h2>
+    <p class="desc">Graph nodes ke beech connections dikhata hai. <b>BFS</b> queue use karta hai (level by level), <b>DFS</b> stack/recursion use karta hai (deep first). Neighbours alphabetical order me visit hote hain.</p>
+    <div class="controls">
+      Start: <select id="g-start"></select>
+      <button class="b green" id="g-bfs">Run BFS</button>
+      <button class="b green" id="g-dfs">Run DFS</button>
+      <button class="b" id="g-reset">Reset Colors</button>
+      &nbsp;|&nbsp; Edge: <select id="g-from"></select> &ndash; <select id="g-to"></select>
+      <button class="b" id="g-add">Add Edge</button>
+      <button class="b" id="g-def">Default Graph</button>
+    </div>
+    <div class="stage center"><svg id="g-svg" viewBox="0 0 600 380"></svg></div>
+    <div class="out" id="g-out"></div>
+    <div class="legend">
+      <span><i style="background:var(--yellow)"></i>Current</span>
+      <span><i style="border:2px solid var(--purple)"></i>In Queue / Discovered</span>
+      <span><i style="background:var(--green)"></i>Visited</span>
+      <span><i style="background:var(--green);height:4px"></i>Traversal edge</span>
+    </div>
+    <div class="log" id="log-g"></div>
+  </section>
+</div>
+
+<footer>
+  <b>Group Members:</b> Nujhat Aara &middot; Monika Gurbani &middot; Kashish Verma &middot; Khushi Verma
+</footer>
+
+<script src="js/common.js"></script>
+<script src="js/array.js"></script>
+<script src="js/stack.js"></script>
+<script src="js/queue.js"></script>
+<script src="js/linkedlist.js"></script>
+<script src="js/tree.js"></script>
+<script src="js/graph.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
