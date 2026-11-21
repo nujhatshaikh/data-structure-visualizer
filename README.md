@@ -226,7 +226,7 @@ The site is then available at `https://<username>.github.io/data-structure-visua
 
 ---
 
-## author
+## Author
 
 - Nujhat Aara
 
